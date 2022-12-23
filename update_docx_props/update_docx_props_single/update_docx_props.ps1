@@ -42,9 +42,9 @@ if(Test-Path $conf) {
 		$global:builtinProperties = @{}
         $config = [xml](get-content $conf)
         foreach ($addNode in $config.configuration.customProperties.add) {
-            if ($addNode.Value.Contains(‘;’)) {
+            if ($addNode.Value.Contains(';')) {
                 # Array case
-                $value = $addNode.Value.Split(‘;’)
+                $value = $addNode.Value.Split(';')
                     for ($i = 0; $i -lt $value.length; $i++) { 
                         $value[$i] = $value[$i].Trim() 
                     }
@@ -57,9 +57,9 @@ if(Test-Path $conf) {
         }
 		
 		foreach ($addNode in $config.configuration.builtinProperties.add) {
-            if ($addNode.Value.Contains(‘;’)) {
+            if ($addNode.Value.Contains(';')) {
                 # Array case
-                $value = $addNode.Value.Split(‘;’)
+                $value = $addNode.Value.Split(';')
                     for ($i = 0; $i -lt $value.length; $i++) { 
                         $value[$i] = $value[$i].Trim() 
                     }
@@ -99,7 +99,7 @@ function AddOrUpdateCustomProperty ($CustomPropertyName, $CustomPropertyValue, $
 }
 
 If ($PSBoundParameters.ContainsKey('filename') -eq "True") {
-    [array]$files = @(Get-ChildItem -Path $path -Include *.doc, *.docx -Recurse -File | select -expand fullname | Where-Object {$filename.Contains($_.Name)})
+    [array]$files = @(Get-ChildItem -Path $path -Filter $filename | select -expand fullname )
     Write-Host "Filename is set. Working with file: " $files
 }
 Else {
