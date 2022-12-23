@@ -1,0 +1,22 @@
+9cb39cfbbb7288ddc1f96f4b8135fe908ff8378f;2022-09-23;Feature: We can now call start()
+c134600387a67bc8367d948ca6e4639b69a5fc0a;2022-09-16;Bugfix: Encoding fixed
+7db6e4a8b9a98fc40511da69a066922315257b5d;2022-09-09;small fixes and added build task
+9ff6408e9e9ac5101fca167e7e56e4d9598d8795;2022-09-08;spelling
+490fda0a8ba70be58a76f57a6379b2863f4d4120;2022-09-08;Feature: export to pdf
+b298029f05b14cde517df14d3124cc267f044a5e;2022-09-08;Feature: export to docx
+b815f1161f88e9342ed88705deb2858b67b8ec47;2022-09-08;Feature: import from md
+d983c2e0b1bb2a5e2133efe4dce69cbc022120d5;2022-09-08;Feature: import from docx
+0b46b113152cabecc67b820e05f842a5b8811fd3;2022-09-07;Bugfix: Naming
+51e5e205e2a5deb30d6c770de88f18748af9bb37;2022-09-07;Feature: Docker container added
+21f3bcaf97e22294d855ee096e9db8aec826d04d;2022-09-07;Feature: cool new stuff
+1e56e56765b6c94038308a5f0d57d464a8157b3d;2022-09-07;Feature: encrypt docs before git
+2ccdda89c5373e9ae25783a62bc3b1c5c054b4b9;2022-09-06;Feature: add some stuff
+a24a4d19fd11bb928f717f2673ac385e2c4bbedf;2022-09-06;Feature: I kinda making this all up
+f1e1e618e703e394981cdb60238b1ec97585e6e9;2022-09-02;Feature: since i cant use real work examples
+d6feee2b75f2cb6ce3c5e8394399f9919d93956a;2022-09-01;Feature: all of them are under NDA
+24c9c083b63bdacf1656a62ce6c59b2c9e9dd133;2022-08-31;Bugfix: this is kinda sad really
+a4dd4f03c856aee328fd1fbc74fe5593c9fb91ac;2022-08-31;Bugfix: you make cool stuff
+f304cd2266ec7a9bbfe396190d33ba7ab807b5b8;2022-08-30;Sadpanda: but cant tell anyone about it
+ae954244212a4694672923df038e681b443bc845;2022-08-19;Sadpanda: especially now, you can go to jail!
+d5b9e85b766190b27679380f718d7f078a7bb85c;2022-08-17;Feature: hope it works
+237597856261012e11ca9983ad5255a765dc30de;2022-08-17;Feature: this script i mean, not going to jail!
