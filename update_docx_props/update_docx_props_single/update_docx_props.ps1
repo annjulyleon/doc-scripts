@@ -12,7 +12,7 @@
 param (
 	[Parameter (Position=1)][string]$dir = $(get-location),
 	[Parameter (Position=2)][string]$conf = $dir + '\config.xml',
-    [Parameter (Position=2)][string]$filename
+    [Parameter (Position=3)][string]$filename
 )
 
 Write-Host "If filename is set: " $PSBoundParameters.ContainsKey('filename')
