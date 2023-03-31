@@ -13,6 +13,23 @@ See old versions in [old_versions](old_versions) folder.
 - `-conf` -- path to config, default is `$dir/config.xml`;
 - `-filename` -- if set, that script will be applied to a single file with specified name in the `$dir`. `filename` version is here [update_docx_props_single](update_docx_props_single).
 
+## V5 - Macro
+
+[v5 - Macro](update_docx_props_macro)
+
+Added the ability to call Microsoft Word macros in a script.
+The list of macros is specified in the `if ($callmacro)` condition.
+See [macros](https://github.com/annjulyleon/doc-scripts/tree/main/word_macros).
+
+```console
+.\UpdateDocxPropsConfig_v3.ps1 -dir . -conf config.xml -callmacro:$true [-filename]
+```
+
+- `-dir` -- directory for documents
+- `-conf` -- path to configuration file
+- `-callmacro` -- switch to call macros, e.g. `callmacro:$true`
+- `-filename` -- optional, filename. If specified, the script will be executed only for this file in `$dir`
+
 ## V4 `Single`
 
 - added a [version](update_docx_props_single) with an option to apply script for single file.

@@ -14,6 +14,23 @@
 - `-conf` -- путь к конфигурационному файлу, по умолчанию `$dir/config.xml`;
 - `-filename` -- опционально, имя файла. Если указано, то скрипт выполнится только для этого файла в `$dir`. Версия с `filename` в [update_docx_props_single](update_docx_props_single).
 
+## V5 - Macro
+
+[v5 - Macro](update_docx_props_macro)
+
+Добавлена возможность в скрипте вызывать макросы Microsoft Word.  
+Список макросов задается в условии `if ($callmacro)`.  
+См. [макросы](https://github.com/annjulyleon/doc-scripts/tree/main/word_macros).
+
+```console
+.\UpdateDocxPropsConfig_v3.ps1 -dir . -conf config.xml -callmacro:$true [-filename]
+```
+
+- `-dir` -- директория для документов
+- `-conf` -- путь к конфигурационному файлу
+- `-callmacro` -- переключатель для вызова макросов, например, `callmacro:$true`
+- `-filename` -- опционально, имя файла. Если указано, то скрипт выполнится только для этого файла в `$dir`
+
 ## V4 - Single
 
 - добавлена версия скрипта (см. [update_docx_props_single](update_docx_props_single)) с возможностью запуска для одного файла.
