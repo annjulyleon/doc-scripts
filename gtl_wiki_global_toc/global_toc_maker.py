@@ -1,30 +1,13 @@
 # -*- coding: utf-8 -*-
 """
 Generate a file tree table of contents for a directory of markdown files
-run from command line:
-    $ python md_file_tree.py
-will generate a  markdown index of all markdown files in the current working
-directory and its sub folders and insert it into  a file `index.md`.
-If a previous index exists in the file it will be replaced,
-otherwise a new index will be created at the end of the file
-or a new file created.
-The index will be linked to the files
-eg.
-`  - [how_to_take_notes.md](./notetaking/how_to_take_notes.md)`
-for a link to a file `how_to_take_notes.md` in the sub-folder `notetaking`
-Options:
-the filename can be explicitly specified
- $ python md_file_tree.py README.md
--f:  The headers in each file will be listed under the file link
--w:  Wikilink syntax `[[./notetaking/how_to_take_notes.md]]`
-     will be used instead of common markdown
-author: elfnor <elfnor.com>
-credit : the code in get_headers comes from
-         https://github.com/amaiorano/md-to-toc
+run from command line
 """
 import re
 import os
 import argparse
+import time
+import datetime
 
 TOC_LIST_PREFIX = "-"
 HEADER_LINE_RE = re.compile("^(# )\s*(.*?)\s*(#+$|$)", re.IGNORECASE)
@@ -44,6 +27,10 @@ def get_headers(filename):
     in_block_quote = False
     results = []  # list of (header level, title, anchor) tuples
     last_line = ""
+
+    file_date = time.ctime(os.path.getmtime(filename))
+    file_date = datetime.datetime.strptime(file_date, "%a %b %d %H:%M:%S %Y")
+    file_changed = file_date.strftime('%Y-%m-%d')
 
     with open(filename, encoding='utf-8') as file:
         '''
@@ -68,15 +55,16 @@ def get_headers(filename):
                 results.append((header_level, title))
 
             last_line = line
-        '''
+        '''   
+
         found_header = False
-        lines = file.readlines();
+        lines = file.readlines()
         match = HEADER_LINE_RE.match(lines[0])
-        if match is not None:                
-                title = match.group(2)
-                found_header = True
+        if match is not None:
+            title = match.group(2)
+            found_header = True
         if found_header:
-                results.append((0, title))
+            results.append((0, title, file_changed))
     return results
 
 
@@ -98,26 +86,29 @@ def create_index(cwd, headings=False, wikilinks=False):
         )
 
         dirs[:] = sorted([d for d in dirs if d[0] != '.'])
-        if len(files) > 0:            
+        if len(files) > 0:
             level = root.count(os.sep) - base_level
             indent = '  ' * level
             if root != cwd:
                 indent = '  ' * (level - 1)
                 md_lines.append('{0} {2} **{1}**\n'.format(indent,
-                                                            os.path.basename(root),
-                                                            TOC_LIST_PREFIX))
+                                                           os.path.basename(
+                                                               root),
+                                                           TOC_LIST_PREFIX))
             rel_dir = '.{1}{0}'.format(os.sep, root[base_len:])
             for md_filename in files:
                 indent = '  ' * level
-                rel_dir = rel_dir.replace('.\\','/')
-                rel_dir = rel_dir.replace('\\','/')
+                rel_dir = rel_dir.replace('.\\', '/')
+                rel_dir = rel_dir.replace('\\', '/')
                 # md_filename = md_filename.replace('.md','')
                 results = get_headers(os.path.join(root, md_filename))
-                md_lines.append(f'{indent} {TOC_LIST_PREFIX} [{results[0][1]}]({rel_dir}{md_filename[:-3]})\n')
+                print(results)
+                md_lines.append(
+                    f'{indent} {TOC_LIST_PREFIX} ⌛{results[0][2]} [{results[0][1]}]({rel_dir}{md_filename[:-3]})\n')
     new_lines = []
     for l in md_lines:
         new_lines.append(l[1:])
-    
+
     new_lines.append('\n<!-- filetreestop -->\n')
     return new_lines
 

@@ -1,4 +1,8 @@
 ' Fix КРАКОЗЯБРЫ for your encound, when pasting to Word
+' Note, that Microsoft 365 and Microsoft 2021 and different versions of Pandoc make slightly different HYPERLINK fields. 
+' So if FigReferenceAutoInsert() and TblReferenceAutoInsert() don't work look if Mid(oField.Code, 15, 4) 
+' returns expected result and adjust for your version. 
+' Use Depug.Print and Ctrl + G in VBA to debug output
 
 Sub FigCapAutoNum()
    Dim Rng As Range
@@ -81,4 +85,23 @@ Sub TblReferenceAutoInsert()
         IncludePosition:=False, SeparateNumbers:=False, SeparatorString:=" "
    Loop
    ActiveDocument.Fields.Update
+End Sub
+
+Sub TableHeaderFix()
+'
+' Fixed tables alignment in first row for specific styles only
+'
+  Dim atable As Table
+  For Each atable In ActiveDocument.Tables
+    If atable.Style = "TableStyleGostNoHeader" Then
+      atable.Columns.DistributeWidth
+      atable.Rows(1).Select
+      Selection.ParagraphFormat.Alignment = wdAlignParagraphCenter
+    End If
+    If atable.Style = "TableStyleGost" Then
+      atable.Columns.DistributeWidth
+      atable.Rows(1).Select
+      Selection.ParagraphFormat.Alignment = wdAlignParagraphCenter
+    End If
+  Next
 End Sub
