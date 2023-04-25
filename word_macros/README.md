@@ -1,6 +1,6 @@
 # Макрос для Word
 
-📜[ENG](README_ENG.md) 
+📜[ENG](README_ENG.md)
 
 Здесь выложен лист VBA с макросами для Word.
 
@@ -25,3 +25,9 @@ $application.Visible = $false
 $doc = $application.Documents.Open($file)
 $application.Run("FigCapAutoNum")
 ```
+
+## CHANGELOG
+
+### 2023-04-25
+
+- added: обработка ошибки `5560: The find what text contains an expression that is not valid` при разных региональных настройках. Теперь макрос содержит оба варианта List Separator (`;` и `,`).
